@@ -189,8 +189,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Enhanced Stats Section */}
-      <section className="py-16 bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden">
+      {/* Enhanced Stats Section - Blue Background with Red Icons */}
+      <section className="py-16 bg-gradient-to-br from-blue-50 via-blue-100/50 to-purple-50 relative overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <div className="absolute inset-0" style={{
             backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.15) 1px, transparent 0)',
@@ -213,20 +213,20 @@ export default function Home() {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: Users, value: '50K+', label: 'Active Users', color: 'blue', bgColor: 'bg-blue-500', lightBg: 'bg-blue-50' },
-              { icon: Award, value: '15+', label: 'Services', color: 'green', bgColor: 'bg-green-500', lightBg: 'bg-green-50' },
-              { icon: TrendingUp, value: '99.9%', label: 'Uptime', color: 'purple', bgColor: 'bg-purple-500', lightBg: 'bg-purple-50' },
-              { icon: Globe, value: '24/7', label: 'Support', color: 'orange', bgColor: 'bg-orange-500', lightBg: 'bg-orange-50' }
+              { icon: Users, value: '50K+', label: 'Active Users' },
+              { icon: Award, value: '15+', label: 'Services' },
+              { icon: TrendingUp, value: '99.9%', label: 'Uptime' },
+              { icon: Globe, value: '24/7', label: 'Support' }
             ].map((stat, index) => (
               <div 
                 key={index} 
                 className="group animate-fade-in-up" 
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <Card className="text-center border-0 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 bg-white relative overflow-hidden">
-                  <div className={`absolute inset-0 ${stat.lightBg} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                <Card className="text-center border border-gray-300/60 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 bg-white relative overflow-hidden">
+                  <div className="absolute inset-0 bg-blue-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <CardContent className="pt-8 pb-8 relative">
-                    <div className={`inline-flex items-center justify-center w-14 h-14 ${stat.bgColor} rounded-xl mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg mx-auto`}>
+                    <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-xl mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg mx-auto">
                       <stat.icon className="w-7 h-7 text-white" />
                     </div>
                     <div className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2 group-hover:scale-110 transition-transform duration-300">
@@ -243,8 +243,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Enhanced Services Cards Section */}
-      <section className="py-16 bg-white">
+      {/* Enhanced Services Cards Section - Blue Background with Red Icons */}
+      <section className="py-16 bg-gradient-to-b from-white via-blue-50 to-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <span className="inline-block px-3 py-1.5 bg-primary/10 text-primary rounded-full text-xs font-semibold mb-3">
@@ -263,44 +263,36 @@ export default function Home() {
               { 
                 icon: FileText, 
                 title: 'Application Services', 
-                desc: 'Secure hosting for government applications with 99.9% uptime guarantee', 
-                color: 'blue', 
-                gradient: 'from-blue-500 to-blue-600',
+                desc: 'Secure hosting for government applications with 99.9% uptime guarantee',
                 features: ['24/7 Monitoring', 'Auto Scaling', 'Secure Infrastructure']
               },
               { 
                 icon: Mail, 
                 title: 'Email Hosting', 
-                desc: 'Professional email services with advanced security and collaboration tools', 
-                color: 'green', 
-                gradient: 'from-green-500 to-green-600',
+                desc: 'Professional email services with advanced security and collaboration tools',
                 features: ['Unlimited Storage', 'Spam Protection', 'Mobile Access']
               },
               { 
                 icon: Cloud, 
                 title: 'Virtual Private Cloud', 
-                desc: 'Scalable cloud infrastructure with dedicated resources and full control', 
-                color: 'purple', 
-                gradient: 'from-purple-500 to-purple-600',
+                desc: 'Scalable cloud infrastructure with dedicated resources and full control',
                 features: ['Custom Configuration', 'High Performance', 'Cost Effective']
               },
               { 
                 icon: Server, 
                 title: 'Data Hosting', 
-                desc: 'Secure data center services with enterprise-grade storage solutions', 
-                color: 'orange', 
-                gradient: 'from-orange-500 to-orange-600',
+                desc: 'Secure data center services with enterprise-grade storage solutions',
                 features: ['Disaster Recovery', 'Data Encryption', 'Regular Backups']
               },
             ].map((service, index) => (
               <Card 
                 key={index} 
-                className="group hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border-0 bg-white overflow-hidden animate-fade-in-up relative"
+                className="group hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-gray-300/60 bg-white overflow-hidden animate-fade-in-up relative"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+                <div className="absolute inset-0 bg-red-50 opacity-0 group-hover:opacity-30 transition-opacity duration-500" />
                 <CardHeader className="relative pb-3">
-                  <div className={`w-14 h-14 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg mx-auto`}>
+                  <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-xl mx-auto">
                     <service.icon className="w-7 h-7 text-white" />
                   </div>
                   <CardTitle className="text-base font-bold group-hover:text-primary transition-colors mb-2 text-center">
@@ -319,7 +311,7 @@ export default function Home() {
                       </div>
                     ))}
                   </div>
-                  <button className={`mt-4 w-full bg-gradient-to-r ${service.gradient} text-white py-2 px-3 rounded-lg font-semibold text-xs hover:shadow-lg transition-all duration-300 group-hover:scale-105`}>
+                  <button className="mt-4 w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-2 px-3 rounded-lg font-semibold text-xs hover:shadow-lg transition-all duration-300 group-hover:scale-105">
                     Learn More
                   </button>
                 </CardContent>
@@ -411,8 +403,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Government Technology Stack */}
-      <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
+      {/* Government Technology Stack - Blue Background with Red Icons */}
+      <section className="py-16 bg-gradient-to-b from-blue-50 via-white to-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <span className="inline-block px-3 py-1.5 bg-primary/10 text-primary rounded-full text-xs font-semibold mb-3">
@@ -428,20 +420,20 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: Database, title: 'E-Governmental Portal', color: 'bg-blue-500', shadow: 'shadow-blue-500/30', hover: 'hover:shadow-blue-500/50' },
-              { icon: FileText, title: 'Digital Services', color: 'bg-green-500', shadow: 'shadow-green-500/30', hover: 'hover:shadow-green-500/50' },
-              { icon: Shield, title: 'Shared Micro Services', color: 'bg-purple-500', shadow: 'shadow-purple-500/30', hover: 'hover:shadow-purple-500/50' },
-              { icon: Database, title: 'Secured Data Exchange', color: 'bg-red-500', shadow: 'shadow-red-500/30', hover: 'hover:shadow-red-500/50' },
-              { icon: Network, title: 'Hosting & Communication', color: 'bg-orange-500', shadow: 'shadow-orange-500/30', hover: 'hover:shadow-orange-500/50' },
-              { icon: Lock, title: 'Cyber Security & Governance', color: 'bg-indigo-500', shadow: 'shadow-indigo-500/30', hover: 'hover:shadow-indigo-500/50' },
+              { icon: Database, title: 'E-Governmental Portal' },
+              { icon: FileText, title: 'Digital Services' },
+              { icon: Shield, title: 'Shared Micro Services' },
+              { icon: Database, title: 'Secured Data Exchange' },
+              { icon: Network, title: 'Hosting & Communication' },
+              { icon: Lock, title: 'Cyber Security & Governance' },
             ].map((item, index) => (
               <Card 
                 key={index} 
-                className={`group hover:shadow-xl ${item.hover} transition-all duration-500 border-0 hover:-translate-y-2 animate-fade-in-up bg-white`}
+                className="group hover:shadow-xl transition-all duration-500 border border-gray-300/60 hover:-translate-y-2 animate-fade-in-up bg-white"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <CardHeader className="flex flex-row items-center gap-4 p-6">
-                  <div className={`w-14 h-14 ${item.color} rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg ${item.shadow} flex-shrink-0`}>
+                  <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg flex-shrink-0">
                     <item.icon className="w-7 h-7 text-white" />
                   </div>
                   <CardTitle className="text-base font-bold flex-1 group-hover:text-primary transition-colors leading-tight">

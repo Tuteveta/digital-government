@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X, ChevronDown, Lock, Building2, Search as SearchIcon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
 const resourcesMenu = [
@@ -12,8 +11,8 @@ const resourcesMenu = [
     href: '/about', 
     description: 'Learn about our transformation journey',
     subsections: [
-      { name: 'Our Journey', href: '/our-journey' },
-      { name: 'Our Achievements', href: '/our-achievements' }
+      { name: 'Our Journey', href: '/about/our-journey' },
+      { name: 'Our Achievements', href: '/about/our-achievements' }
     ]
   },
   { 
@@ -72,6 +71,10 @@ export function Header() {
 
   const closeMegaMenu = () => {
     setMegaMenuOpen(false);
+  };
+
+  const openPortal = () => {
+    window.open('/login', '_blank');
   };
 
   return (
@@ -160,9 +163,9 @@ export function Header() {
       <div className="bg-white border-b border-gray-200">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
-            {/* Left section: Logo, Title, and Navigation aligned with flag above */}
+            {/* Left section: Logo, Title, and Navigation */}
             <div className="flex items-center gap-8 flex-1">
-              {/* Logo and Title - aligned with PNG flag */}
+              {/* Logo and Title */}
               <Link href="/" className="flex items-center gap-3 flex-shrink-0">
                 <div className="relative w-12 h-12">
                   <Image
@@ -201,13 +204,13 @@ export function Header() {
                   </button>
                 </div>
 
-                {/* Login */}
-                <Link 
-                  href="/login"
+                {/* Login - Opens New Window */}
+                <button 
+                  onClick={openPortal}
                   className="px-4 py-2.5 text-sm font-semibold text-gray-700 hover:text-primary hover:bg-blue-50 rounded-md transition-all duration-200"
                 >
                   Login
-                </Link>
+                </button>
               </nav>
             </div>
 
@@ -377,13 +380,15 @@ export function Header() {
               </div>
             ))}
             
-            <Link
-              href="/login"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-3 text-base font-semibold text-gray-900 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors text-center mt-3"
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openPortal();
+              }}
+              className="block w-full px-4 py-3 text-base font-semibold text-gray-900 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors text-center mt-3"
             >
               Login
-            </Link>
+            </button>
           </div>
         </div>
       )}
