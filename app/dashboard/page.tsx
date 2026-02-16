@@ -315,7 +315,7 @@ export default function DashboardPage() {
                       <div key={key}>
                         <div className="flex justify-between text-sm mb-2">
                           <span className="capitalize text-gray-600">{key}</span>
-                          <span className="font-medium">{value}%</span>
+                          <span className="font-medium">{value as number}%</span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">
                           <div 
