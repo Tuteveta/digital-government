@@ -160,7 +160,7 @@ export function Header() {
       </div>
 
       {/* Main header */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-white border-b border-gray-200 relative">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             {/* Left section: Logo, Title, and Navigation */}
@@ -190,7 +190,7 @@ export function Header() {
                   Home
                 </Link>
                 
-                {/* Our Resources Dropdown */}
+                {/* Our Resources Dropdown - Fixed hover area */}
                 <div
                   className="relative"
                   onMouseEnter={() => setMegaMenuOpen(true)}
@@ -202,6 +202,11 @@ export function Header() {
                     Our Resources
                     <ChevronDown className="w-4 h-4" />
                   </button>
+                  
+                  {/* Extended hover area to bridge the gap */}
+                  {megaMenuOpen && (
+                    <div className="absolute left-0 right-0 h-4 bg-transparent" />
+                  )}
                 </div>
 
                 {/* Login - Opens New Window */}
@@ -280,66 +285,66 @@ export function Header() {
             </div>
           )}
         </div>
-      </div>
 
-      {/* Mega Menu - Our Resources */}
-      {megaMenuOpen && (
-        <div
-          className="absolute left-0 right-0 bg-white border-b border-gray-200 shadow-xl"
-          onMouseEnter={() => setMegaMenuOpen(true)}
-          onMouseLeave={closeMegaMenu}
-        >
-          <div className="mx-auto max-w-7xl px-6 lg:px-8 py-8">
-            <div className="flex items-start justify-between mb-8">
-              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                Our Resources
-                <span className="text-primary text-2xl">→</span>
-              </h2>
-              <button
-                onClick={closeMegaMenu}
-                className="p-1.5 hover:bg-gray-100 rounded-md transition-colors"
-                aria-label="Close menu"
-              >
-                <X className="w-4 h-4 text-gray-500" />
-              </button>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {resourcesMenu.map((item) => (
-                <div key={item.name} className="space-y-2">
-                  <Link
-                    href={item.href}
-                    onClick={closeMegaMenu}
-                    className="group p-5 hover:bg-gray-50 rounded-lg transition-all duration-200 border border-gray-100 hover:border-gray-200 hover:shadow-sm block"
-                  >
-                    <h3 className="font-semibold text-gray-900 mb-1.5 flex items-center gap-2 group-hover:text-primary transition-colors">
-                      {item.name}
-                      <span className="text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all text-lg">→</span>
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">{item.description}</p>
-                  </Link>
-                  
-                  {/* Subsections if available */}
-                  {item.subsections && item.subsections.length > 0 && (
-                    <div className="ml-5 space-y-1">
-                      {item.subsections.map((subsection) => (
-                        <Link
-                          key={subsection.name}
-                          href={subsection.href}
-                          onClick={closeMegaMenu}
-                          className="block text-sm text-gray-600 hover:text-primary transition-colors py-1"
-                        >
-                          • {subsection.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
+        {/* Mega Menu - Our Resources - Fixed positioning */}
+        {megaMenuOpen && (
+          <div
+            className="absolute left-0 right-0 top-full bg-white border-b border-gray-200 shadow-xl"
+            onMouseEnter={() => setMegaMenuOpen(true)}
+            onMouseLeave={closeMegaMenu}
+          >
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 py-8">
+              <div className="flex items-start justify-between mb-8">
+                <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                  Our Resources
+                  <span className="text-primary text-2xl">→</span>
+                </h2>
+                <button
+                  onClick={closeMegaMenu}
+                  className="p-1.5 hover:bg-gray-100 rounded-md transition-colors"
+                  aria-label="Close menu"
+                >
+                  <X className="w-4 h-4 text-gray-500" />
+                </button>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {resourcesMenu.map((item) => (
+                  <div key={item.name} className="space-y-2">
+                    <Link
+                      href={item.href}
+                      onClick={closeMegaMenu}
+                      className="group p-5 hover:bg-gray-50 rounded-lg transition-all duration-200 border border-gray-100 hover:border-gray-200 hover:shadow-sm block"
+                    >
+                      <h3 className="font-semibold text-gray-900 mb-1.5 flex items-center gap-2 group-hover:text-primary transition-colors">
+                        {item.name}
+                        <span className="text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all text-lg">→</span>
+                      </h3>
+                      <p className="text-sm text-gray-600 leading-relaxed">{item.description}</p>
+                    </Link>
+                    
+                    {/* Subsections if available */}
+                    {item.subsections && item.subsections.length > 0 && (
+                      <div className="ml-5 space-y-1">
+                        {item.subsections.map((subsection) => (
+                          <Link
+                            key={subsection.name}
+                            href={subsection.href}
+                            onClick={closeMegaMenu}
+                            className="block text-sm text-gray-600 hover:text-primary transition-colors py-1"
+                          >
+                            • {subsection.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
