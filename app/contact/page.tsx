@@ -3,19 +3,39 @@
 import { useState } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
-import { Mail, Phone, MapPin, Clock } from 'lucide-react';
+import Link from 'next/link';
+import {
+  Home,
+  ChevronRight,
+  MessageSquare,
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  CheckCircle,
+  ArrowRight,
+} from 'lucide-react';
+import { contactInfo } from '@/lib/mockData';
+
+const contactDetails = [
+  { icon: Mail,    label: 'General Enquiries',  value: contactInfo.email,        sub: 'Response within 1 business day' },
+  { icon: Phone,   label: 'Phone',              value: contactInfo.phone,         sub: 'Monday – Friday, 8am – 5pm' },
+  { icon: Mail,    label: 'Technical Support',  value: contactInfo.supportEmail,  sub: '24/7 support available' },
+  { icon: MapPin,  label: 'Address',            value: 'Level 5, IPA Haus, Waigani Drive', sub: 'Port Moresby, NCD, PNG' },
+];
+
+const officeHours = [
+  { day: 'Monday – Friday', hours: '8:00 AM – 5:00 PM', open: true },
+  { day: 'Saturday',        hours: 'Closed',            open: false },
+  { day: 'Sunday',          hours: 'Closed',            open: false },
+  { day: 'Public Holidays', hours: 'Closed',            open: false },
+];
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -29,163 +49,153 @@ export default function ContactPage() {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header />
-      
+
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-primary via-blue-900 to-primary text-white py-20">
-          <div className="max-w-7xl mx-auto px-6">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
-            <p className="text-xl max-w-3xl">
-              Get in touch with the Digital Transformation Office
-            </p>
+
+        {/* ─── 1. HERO ──────────────────────────────────────────────────── */}
+        <section className="bg-gradient-to-br from-primary via-blue-900 to-primary text-white py-20 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+              backgroundSize: '50px 50px'
+            }} />
+          </div>
+          <div className="max-w-7xl mx-auto px-6 relative">
+            <nav className="flex items-center gap-2 text-sm mb-6 text-blue-100">
+              <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
+                <Home className="w-4 h-4" />Home
+              </Link>
+              <ChevronRight className="w-4 h-4" />
+              <span className="text-white font-medium">Contact Us</span>
+            </nav>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center border-2 border-white/30">
+                <MessageSquare className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h1 className="text-4xl md:text-5xl font-bold">Contact Us</h1>
+                <p className="text-xl text-blue-50 mt-2">Get in touch with the Digital Transformation Office</p>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Contact Information Cards */}
-        <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid md:grid-cols-3 gap-8 mb-16">
-              <Card className="border-t-4 border-t-blue-500 hover:shadow-xl transition-shadow">
-                <CardHeader>
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
-                    <Mail className="w-8 h-8 text-blue-600" />
-                  </div>
-                  <CardTitle className="text-center">Email Us</CardTitle>
-                  <CardDescription className="text-center">Send us an email anytime</CardDescription>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <a href="mailto:info@digitalgov.pg" className="text-primary hover:underline text-lg font-semibold">
-                    info@digitalgov.pg
-                  </a>
-                </CardContent>
-              </Card>
-
-              <Card className="border-t-4 border-t-green-500 hover:shadow-xl transition-shadow">
-                <CardHeader>
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4 mx-auto">
-                    <Phone className="w-8 h-8 text-green-600" />
-                  </div>
-                  <CardTitle className="text-center">Call Us</CardTitle>
-                  <CardDescription className="text-center">Mon to Fri, 8am to 5pm</CardDescription>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <a href="tel:+675XXXXXXX" className="text-primary hover:underline text-lg font-semibold">
-                    +675 XXX XXXX
-                  </a>
-                </CardContent>
-              </Card>
-
-              <Card className="border-t-4 border-t-orange-500 hover:shadow-xl transition-shadow">
-                <CardHeader>
-                  <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4 mx-auto">
-                    <MapPin className="w-8 h-8 text-orange-600" />
-                  </div>
-                  <CardTitle className="text-center">Visit Us</CardTitle>
-                  <CardDescription className="text-center">Come see us in person</CardDescription>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-gray-700">
-                    Port Moresby<br />
-                    Papua New Guinea
-                  </p>
-                </CardContent>
-              </Card>
+        {/* ─── 2. CONTACT DETAILS ──────────────────────────────────────── */}
+        <section className="py-12 sm:py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pb-4 border-b-2 border-primary mb-0">
+              <div>
+                <p className="text-xs font-bold text-primary uppercase tracking-widest mb-1">Reach Us</p>
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Contact Information</h2>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-gray-500 pb-0.5">
+                <span className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
+                Support available
+              </div>
             </div>
+            <div className="border-x border-b border-gray-200 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 divide-x-0 sm:divide-x divide-gray-200">
+              {contactDetails.map((c, i) => (
+                <div key={i} className="p-6 sm:p-7 bg-white hover:bg-gray-50 transition-colors border-t border-gray-200">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 border border-gray-200 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <c.icon className="w-4 h-4 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-0.5">{c.label}</p>
+                      <p className="text-sm font-semibold text-gray-900 mb-0.5 break-all">{c.value}</p>
+                      <p className="text-xs text-gray-400">{c.sub}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-            <div className="grid md:grid-cols-2 gap-12">
+        {/* ─── 3. FORM + LOCATION ──────────────────────────────────────── */}
+        <section className="py-12 sm:py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+
               {/* Contact Form */}
               <div>
-                <Card className="shadow-xl">
-                  <CardHeader>
-                    <CardTitle className="text-2xl">Send us a message</CardTitle>
-                    <CardDescription className="text-base">
-                      Fill out the form below and we'll get back to you as soon as possible
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    {submitted && (
-                      <div className="mb-4 p-4 bg-green-50 border border-green-200 text-green-700 rounded-md">
-                        ✓ Thank you for your message! We'll be in touch soon.
-                      </div>
-                    )}
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                      <div className="space-y-2">
-                        <Label htmlFor="name">Full Name *</Label>
-                        <Input
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          placeholder="John Doe"
-                          required
-                          className="h-12"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email Address *</Label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          placeholder="john@example.com"
-                          required
-                          className="h-12"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="subject">Subject *</Label>
-                        <Input
-                          id="subject"
-                          name="subject"
-                          value={formData.subject}
-                          onChange={handleChange}
-                          placeholder="How can we help?"
-                          required
-                          className="h-12"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="message">Message *</Label>
-                        <textarea
-                          id="message"
-                          name="message"
-                          value={formData.message}
-                          onChange={handleChange}
-                          required
-                          rows={6}
-                          placeholder="Tell us more about your inquiry..."
-                          className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                        />
-                      </div>
-                      <Button type="submit" className="w-full h-12 text-base">
-                        Send Message
-                      </Button>
-                    </form>
-                  </CardContent>
-                </Card>
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pb-4 border-b-2 border-primary mb-6">
+                  <div>
+                    <p className="text-xs font-bold text-primary uppercase tracking-widest mb-1">Enquiry</p>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Send a Message</h2>
+                  </div>
+                </div>
+
+                {submitted && (
+                  <div className="mb-5 flex items-center gap-3 p-4 bg-emerald-50 border border-emerald-200 text-emerald-700">
+                    <CheckCircle className="w-4 h-4 flex-shrink-0" />
+                    <span className="text-sm font-medium">Thank you — we&apos;ll be in touch soon.</span>
+                  </div>
+                )}
+
+                <form onSubmit={handleSubmit} className="border border-gray-200">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-gray-200 border-b border-gray-200">
+                    <div className="p-5">
+                      <Label htmlFor="name" className="text-xs font-bold text-gray-500 uppercase tracking-wider block mb-2">Full Name *</Label>
+                      <Input
+                        id="name" name="name" value={formData.name} onChange={handleChange}
+                        placeholder="John Doe" required
+                        className="border-gray-200 text-sm h-10"
+                      />
+                    </div>
+                    <div className="p-5">
+                      <Label htmlFor="email" className="text-xs font-bold text-gray-500 uppercase tracking-wider block mb-2">Email Address *</Label>
+                      <Input
+                        id="email" name="email" type="email" value={formData.email} onChange={handleChange}
+                        placeholder="john@example.com" required
+                        className="border-gray-200 text-sm h-10"
+                      />
+                    </div>
+                  </div>
+                  <div className="p-5 border-b border-gray-200">
+                    <Label htmlFor="subject" className="text-xs font-bold text-gray-500 uppercase tracking-wider block mb-2">Subject *</Label>
+                    <Input
+                      id="subject" name="subject" value={formData.subject} onChange={handleChange}
+                      placeholder="How can we help?" required
+                      className="border-gray-200 text-sm h-10"
+                    />
+                  </div>
+                  <div className="p-5 border-b border-gray-200">
+                    <Label htmlFor="message" className="text-xs font-bold text-gray-500 uppercase tracking-wider block mb-2">Message *</Label>
+                    <textarea
+                      id="message" name="message" value={formData.message} onChange={handleChange}
+                      required rows={5}
+                      placeholder="Tell us more about your enquiry..."
+                      className="w-full px-3 py-2 text-sm border border-gray-200 focus:outline-none focus:ring-1 focus:ring-primary/30 focus:border-primary resize-none bg-white"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white text-sm font-semibold py-2.5 justify-between group">
+                      Send Message
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </div>
+                </form>
               </div>
 
-              {/* Map and Office Hours */}
-              <div className="space-y-6">
+              {/* Location + Hours */}
+              <div className="space-y-8">
                 {/* Map */}
-                <Card className="overflow-hidden shadow-xl">
-                  <CardHeader>
-                    <CardTitle>Our Location</CardTitle>
-                    <CardDescription>Digital Transformation Office, Port Moresby</CardDescription>
-                  </CardHeader>
-                  <CardContent className="p-0">
-                    <div className="w-full h-80 bg-gray-200 relative">
+                <div>
+                  <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pb-4 border-b-2 border-primary mb-6">
+                    <div>
+                      <p className="text-xs font-bold text-primary uppercase tracking-widest mb-1">Location</p>
+                      <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Find Us</h2>
+                    </div>
+                  </div>
+                  <div className="border border-gray-200 overflow-hidden">
+                    <div className="w-full h-52">
                       <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63256.15907897422!2d147.1130929!3d-9.4438004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6900675d8fa34b4b%3A0x2a15443b527e3!2sPort%20Moresby%2C%20Papua%20New%20Guinea!5e0!3m2!1sen!2s!4v1234567890"
                         width="100%"
@@ -194,52 +204,38 @@ export default function ContactPage() {
                         allowFullScreen
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
-                        className="absolute inset-0"
-                      ></iframe>
+                      />
                     </div>
-                  </CardContent>
-                </Card>
+                    <div className="border-t border-gray-200 px-4 py-3 bg-gray-50">
+                      <p className="text-xs font-semibold text-gray-700">Level 5, IPA Haus, Waigani Drive</p>
+                      <p className="text-xs text-gray-400">Port Moresby, National Capital District, PNG</p>
+                    </div>
+                  </div>
+                </div>
 
                 {/* Office Hours */}
-                <Card className="shadow-xl border-t-4 border-t-primary">
-                  <CardHeader>
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                        <Clock className="w-6 h-6 text-primary" />
+                <div>
+                  <div className="flex items-center gap-2 px-4 py-2.5 bg-primary mb-0">
+                    <Clock className="w-4 h-4 text-white" />
+                    <span className="text-xs font-bold text-white uppercase tracking-wider">Office Hours</span>
+                  </div>
+                  <div className="border-x border-b border-gray-200">
+                    {officeHours.map((h, i) => (
+                      <div key={i} className="flex items-center justify-between px-4 py-3 border-t border-gray-200 bg-white">
+                        <span className="text-sm text-gray-700 font-medium">{h.day}</span>
+                        <span className={['text-xs font-semibold', h.open ? 'text-emerald-600' : 'text-gray-400'].join(' ')}>
+                          {h.hours}
+                        </span>
                       </div>
-                      <div>
-                        <CardTitle>Office Hours</CardTitle>
-                        <CardDescription>When we're available</CardDescription>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div className="flex justify-between items-center py-3 border-b">
-                        <span className="font-semibold text-gray-700">Monday - Friday</span>
-                        <span className="text-primary font-medium">8:00 AM - 5:00 PM</span>
-                      </div>
-                      <div className="flex justify-between items-center py-3 border-b">
-                        <span className="font-semibold text-gray-700">Saturday</span>
-                        <span className="text-gray-500">Closed</span>
-                      </div>
-                      <div className="flex justify-between items-center py-3 border-b">
-                        <span className="font-semibold text-gray-700">Sunday</span>
-                        <span className="text-gray-500">Closed</span>
-                      </div>
-                      <div className="flex justify-between items-center py-3">
-                        <span className="font-semibold text-gray-700">Public Holidays</span>
-                        <span className="text-gray-500">Closed</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
-      </main>
 
+      </main>
       <Footer />
     </div>
   );

@@ -69,13 +69,13 @@ export function PortalFooter() {
           <div className="flex items-center gap-4 text-sm text-gray-400">
             <span>Secure Portal v2.0</span>
             <span>•</span>
-            <a href="#" className="hover:text-white transition-colors">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">
               Privacy Policy
-            </a>
+            </Link>
             <span>•</span>
-            <a href="#" className="hover:text-white transition-colors">
+            <Link href="/terms-of-service" className="hover:text-white transition-colors">
               Terms of Service
-            </a>
+            </Link>
           </div>
         </div>
       </div>
