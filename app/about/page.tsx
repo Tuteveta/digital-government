@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -46,10 +46,17 @@ export default function AboutPage() {
               <span className="text-white font-medium">About Us</span>
             </nav>
 
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">About Us</h1>
-            <p className="text-xl max-w-3xl text-blue-50">
-              Leading Papua New Guinea's digital transformation journey
-            </p>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center border-2 border-white/30">
+                <Building2 className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h1 className="text-4xl md:text-5xl font-bold">About Us</h1>
+                <p className="text-xl text-blue-50 mt-2">
+                  Leading Papua New Guinea's digital transformation journey
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 

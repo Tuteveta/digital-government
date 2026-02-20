@@ -1,0 +1,16 @@
+const fs = require('fs');
+
+const base = 'd:/Devpro/digital-government/app';
+
+function readFile(p) { return fs.readFileSync(p, 'utf8'); }
+function writeFile(p, c) { fs.writeFileSync(p, c, 'utf8'); console.log('Written: ' + p); }
+
+function buildBreadcrumbs(parents) {
+  let out = '';
+  for (const p of parents) {
+    out += '
+              <Link href="' + '{p.href_PLACEHOLDER}' + '" className="hover:text-white transition-colors">' + '{p.label_PLACEHOLDER}' + '</Link>
+              <ChevronRight className="w-4 h-4" />';
+  }
+  return out;
+}
