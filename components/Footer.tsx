@@ -49,7 +49,7 @@ export function Footer() {
           </div>
 
           {/* Navigate */}
-          <div className="md:col-span-2 md:col-start-6">
+          <div className="md:col-span-2">
             <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-5 pb-2 border-b border-white/10">
               Navigate
             </h3>

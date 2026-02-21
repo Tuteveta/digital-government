@@ -18,7 +18,6 @@ import {
   ChevronRight,
   ArrowRight,
   CheckCircle,
-  Play,
 } from 'lucide-react';
 
 const heroSlides = [
@@ -258,23 +257,16 @@ export default function Home() {
 
           {/* 2-column layout */}
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-            {/* Left: Video placeholder */}
+            {/* Left: Video */}
             <div>
-              <div className="relative aspect-video border border-gray-200 bg-white overflow-hidden">
-                <div className="absolute inset-0 bg-gray-100" />
-                {/* Corner bracket accents */}
-                <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-primary/40" />
-                <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-primary/40" />
-                <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-primary/40" />
-                <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-primary/40" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <button className="w-14 h-14 bg-primary/10 border border-primary/20 rounded-full flex items-center justify-center mx-auto mb-2.5 hover:bg-primary/20 transition-colors">
-                      <Play className="w-5 h-5 text-primary ml-0.5" style={{ fill: 'currentColor' }} />
-                    </button>
-                    <p className="text-xs text-gray-500 font-medium">Watch Our Story</p>
-                  </div>
-                </div>
+              <div className="relative aspect-video border border-gray-200 bg-black overflow-hidden">
+                <iframe
+                  src="https://www.youtube.com/embed/y0zTslnc6e0"
+                  title="Digital Government — Watch Our Story"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full"
+                />
               </div>
               {/* Caption */}
               <p className="mt-2 text-xs text-gray-400 italic">

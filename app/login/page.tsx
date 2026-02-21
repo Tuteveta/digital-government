@@ -20,7 +20,7 @@ import {
   ArrowRight,
   Shield,
 } from 'lucide-react';
-import { authenticateUser } from '@/lib/mockAuth';
+import { authenticateUser, mockUsers, roleInfo } from '@/lib/mockAuth';
 
 const portalFeatures = [
   {
